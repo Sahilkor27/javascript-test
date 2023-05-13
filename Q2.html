@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <video id="video" width="640" height="360" controls>
+    <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+  </video>
+  <div id="controls">
+    <button id="play-pause">►</button>
+    <input type="range" id="volume" min="0" max="1" step="0.1">
+    <input type="range" id="playback-speed" min="0.5" max="2" step="0.1">
+    <button id="skip-back">« 10s</button>
+    <button id="skip-forward">25s »</button>
+  </div>
+
+  <script>
+    // Add your JavaScript code here
+    const video = document.querySelector('#video');
+    const playPauseButton = document.querySelector('#play-pause');
+    const volumeControl = document.querySelector('#volume');
+    const playbackSpeedControl = document.querySelector('#playback-speed');
+    const skipBackButton = document.querySelector('#skip-back');
+    const skipForwardButton = document.querySelector('#skip-forward');
+
+    playPauseButton.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playPauseButton.textContent = '❚ ❚';
+      } else {
+        video.pause();
+        playPauseButton.textContent = '►';
+      }
+    });
+
+    volumeControl.addEventListener('input', () => {
+      video.volume = volumeControl.value;
+    });
+
+    playbackSpeedControl.addEventListener('input', () => {
+      video.playbackRate = playbackSpeedControl.value;
+    });
+
+    skipBackButton.addEventListener('click', () => {
+      video.currentTime -= 10;
+    });
+
+    skipForwardButton.addEventListener('click', () => {
+      video.currentTime += 25;
+    });
+  </script>
+</body>
+</html>
